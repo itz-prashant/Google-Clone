@@ -8,7 +8,7 @@ const App = () => {
     <BrowserRouter>
     <Routes>
       <Route  path='/'  element={<Home />}/>
-      <Route  path='/'  element={<SearchResult />}/>
+      <Route  path='/:query/:startIndex'  element={<SearchResult />}/>
     </Routes>
     </BrowserRouter>
   )
