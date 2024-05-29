@@ -15,7 +15,7 @@ const SearchResult = () => {
     const {imageSearch} = useContext(Context)
 
     useEffect(()=>{
-        fetchSearchResult()
+        // fetchSearchResult()
     },[query,startindex, imageSearch])
 
     const fetchSearchResult = ()=>{
@@ -24,8 +24,7 @@ const SearchResult = () => {
             payload.searchType = "image"
         }
         fetchDataFromApi(payload).then((res)=>{
-            console.log(res);
-            // setSearchResult(res)
+            setSearchResult(res)
         })
     }
 
@@ -34,9 +33,23 @@ const SearchResult = () => {
 
     return <div className="flex flex-col min-h-[100vh]">
         <SearchResultHeader />
-        <main className="grow p-3 pb-0 md:pr-5 md:pl-20"></main>
+        <main className="grow p-3 md:pr-5 pb-0  md:pl-10">
+            <div className="flex text-sm text-[#70757a]">
+                {`About ${searchInformation.formattedTotalResults} results in (${searchInformation.searchTime})`}
+            </div>
+            {!imageSearch ? (<>
+                {items.map((item,index)=>(
+                    <SearchedItemTemplate key={index} data={item}/>
+                ))}
+            </>) : (
+                <div className="grid gap-4 grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
+                    {items.map((item,index)=>(
+                    <SearchedImageItemTemplate key={index} data={item}/>
+                ))}
+                </div>
+            )}
+        </main>
         <Footer />
-    </div>;
+    </div>
 };
-
 export default SearchResult;

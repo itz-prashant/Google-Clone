@@ -15,7 +15,7 @@ const SearchResultHeader = () => {
         return ()=> setImageSearch(false)
     },[])
     const clickHandler = (menuItem)=>{
-        let isTypeimages = menu.name === "Images"
+        let isTypeimages = menuItem.name === "Images"
         setSelectedMenu(menuItem.name)
         setImageSearch( isTypeimages ? true : false)
     }
