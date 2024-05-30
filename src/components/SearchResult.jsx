@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-
 import { fetchDataFromApi } from "../utils/api";
 import SearchResultHeader from "./SearchResultHeader";
 import Footer from "./Footer";
@@ -11,15 +10,15 @@ import { Context } from "../utils/ContextApi";
 
 const SearchResult = () => {
     const [result, setSearchResult] = useState()
-    const {query,startindex} = useParams()
+    const {query,startIndex} = useParams()
     const {imageSearch} = useContext(Context)
 
     useEffect(()=>{
-        // fetchSearchResult()
-    },[query,startindex, imageSearch])
+        fetchSearchResult()
+    },[query,startIndex, imageSearch])
 
     const fetchSearchResult = ()=>{
-        let payload = {q:query, start: startindex}
+        let payload = {q:query, start: startIndex}
         if(imageSearch){
             payload.searchType = "image"
         }
@@ -48,6 +47,7 @@ const SearchResult = () => {
                 ))}
                 </div>
             )}
+            <Pagination queries={queries}/>
         </main>
         <Footer />
     </div>
